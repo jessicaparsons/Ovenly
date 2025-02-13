@@ -1,7 +1,7 @@
 # 🍰 Ovenly – A Delightful Way to Discover & Save Baking Recipes  
 
 ## ✨ Summary  
-Ovenly is a beautifully crafted SwiftUI app that helps users discover and save baking recipes sorted by regional cuisine. With a focus on smooth user experience and Swift Concurrency, Ovenly allows users to:  
+Ovenly is a single-view portfolio SwiftUI app that helps users discover and save baking recipes sorted by regional cuisine. With a focus on smooth user experience and Swift Concurrency, Ovenly allows users to:  
 
 - ✅ **Browse Baking Recipes** by regional cuisine with an intuitive UI.  
 - ✅ **Search Recipes** using a search bar or by selecting cuisine-type chips.  
@@ -74,4 +74,4 @@ Ovenly was a fun and rewarding project! It allowed me to showcase my UI skills, 
 ### Installation  
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/your-username/RoyalSeaJourneys.git
+   git clone https://github.com/your-username/Ovenly.git
