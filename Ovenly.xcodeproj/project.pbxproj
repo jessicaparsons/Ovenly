@@ -29,20 +29,28 @@
 		C8C0F2722D59780C00D3499A /* OvenlyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OvenlyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C8C0F8282D5C0DF200D3499A /* Exceptions for "Ovenly" folder in "Ovenly" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = C8C0F2572D59780A00D3499A /* Ovenly */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C8C0F25A2D59780A00D3499A /* Ovenly */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C8C0F8282D5C0DF200D3499A /* Exceptions for "Ovenly" folder in "Ovenly" target */,
+			);
 			path = Ovenly;
 			sourceTree = "<group>";
 		};
 		C8C0F26B2D59780C00D3499A /* OvenlyTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = OvenlyTests;
-			sourceTree = "<group>";
-		};
-		C8C0F2752D59780C00D3499A /* OvenlyUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = OvenlyUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -77,7 +85,6 @@
 			children = (
 				C8C0F25A2D59780A00D3499A /* Ovenly */,
 				C8C0F26B2D59780C00D3499A /* OvenlyTests */,
-				C8C0F2752D59780C00D3499A /* OvenlyUITests */,
 				C8C0F2592D59780A00D3499A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -152,9 +159,6 @@
 			);
 			dependencies = (
 				C8C0F2742D59780C00D3499A /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				C8C0F2752D59780C00D3499A /* OvenlyUITests */,
 			);
 			name = OvenlyUITests;
 			packageProductDependencies = (
@@ -399,11 +403,12 @@
 				DEVELOPMENT_TEAM = 4Q55A6KPP6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Ovenly/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -428,11 +433,12 @@
 				DEVELOPMENT_TEAM = 4Q55A6KPP6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Ovenly/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

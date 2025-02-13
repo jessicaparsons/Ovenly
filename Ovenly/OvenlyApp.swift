@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct OvenlyApp: App {
+    
+    @StateObject private var favoritesViewModel = FavoritesViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RecipeListView()
+                .environmentObject(favoritesViewModel)
         }
     }
 }
