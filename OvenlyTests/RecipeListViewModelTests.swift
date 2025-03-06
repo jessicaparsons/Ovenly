@@ -66,7 +66,7 @@ final class RecipeListViewModelTests: XCTestCase {
 }
 
 // Mock verson of Recipe API call
-class MockGetRecipes: RecipeFetcher {
+class MockGetRecipes: RecipeFetching {
     
     func getRecipes() async throws -> [RecipeModel] {
                 
@@ -117,7 +117,7 @@ class MockGetRecipes: RecipeFetcher {
     }
 }
 
-class MockGetRecipesMalformedAPI: RecipeFetcher {
+class MockGetRecipesMalformedAPI: RecipeFetching {
     
     private let malformedAPIURL = "https://d3jbb8n5wk0qxi.cloudfront.net/recipes-malformed.json"
     

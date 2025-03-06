@@ -7,14 +7,16 @@
 import Foundation
 import SwiftUI
 
-class LocalFileManager {
+actor LocalFileManager {
     
     static let instance = LocalFileManager()
     internal let memoryCache = NSCache<NSString, NSURL>()
     let folderName = "Ovenly_Images"
     
     private init() {
-        createFolderIfNeeded()
+        Task {
+            await createFolderIfNeeded()
+        }
     }
     
     //Create app specific folder so we can find our cached images easily

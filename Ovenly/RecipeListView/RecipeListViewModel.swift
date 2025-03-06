@@ -7,8 +7,12 @@
 
 import SwiftUI
 
-protocol RecipeFetcher {
+protocol RecipeFetching {
     func getRecipes() async throws -> [RecipeModel]
+}
+
+protocol CachedImagesFetching {
+    func fetchCachedImage(for recipe: RecipeModel) async -> URL?
 }
 
 enum NetworkError: Error {
@@ -20,35 +24,47 @@ enum NetworkError: Error {
 final class RecipeListViewModel: ObservableObject {
     
     @Published var recipes: [RecipeModel] = []
-    @Published var showErrorMessage: Bool = false
-    internal let manager = LocalFileManager.instance
-    private let recipeFetcher: RecipeFetcher
+    @Published var isShowingError: Bool = false
+    let fileManager = LocalFileManager.instance
+    private let recipeFetcher: RecipeFetching
+    private let cachedImageFetcher: CachedImagesFetching
     
-    init(recipeFetcher: RecipeFetcher) {
+    init(recipeFetcher: RecipeFetching, cachedImageFetcher: CachedImagesFetching) {
         self.recipeFetcher = recipeFetcher
+        self.cachedImageFetcher = cachedImageFetcher
     }
 
     @MainActor
     func loadRecipes() async {
-        do {
-            var fetchedRecipes = try await recipeFetcher.getRecipes()
-            
-            for index in fetchedRecipes.indices {
-                if let localURL = await fetchCachedImage(for: fetchedRecipes[index]) {
-                    fetchedRecipes[index].imageDataURL = localURL
+        Task {
+            do {
+                
+                var fetchedRecipes = try await recipeFetcher.getRecipes()
+                
+                for index in fetchedRecipes.indices {
+                    if let localURL = await cachedImageFetcher.fetchCachedImage(for: fetchedRecipes[index]) {
+                        fetchedRecipes[index].imageDataURL = localURL
+                    }
+                }
+                await MainActor.run {
+                    self.recipes = fetchedRecipes
                 }
             }
-            
-            self.recipes = fetchedRecipes
-            
-        } catch {
-            showErrorMessage = true
-            print("Failed to fetch recipes: \(error)")
+            catch {
+                await MainActor.run {
+                    isShowingError = true
+                    print("Failed to fetch recipes: \(error)")
+                }
+            }
         }
     }
+}
+
+
+struct CachedImageDataStore: CachedImagesFetching {
     
-    private func fetchCachedImage(for recipe: RecipeModel) async -> URL? {
-        if let cachedURL = LocalFileManager.instance.getCachedImageURL(for: recipe.id) {
+    func fetchCachedImage(for recipe: RecipeModel) async -> URL? {
+        if let cachedURL = await LocalFileManager.instance.getCachedImageURL(for: recipe.id) {
             print("Using cached image: \(recipe.id)")
             return cachedURL
         }
@@ -58,9 +74,10 @@ final class RecipeListViewModel: ObservableObject {
         }
         return nil
     }
+    
 }
 
-class GetRecipes: RecipeFetcher {
+struct RecipeFetcher: RecipeFetching {
     
     func getRecipes() async throws -> [RecipeModel] {
         guard let url = URL(string: Constants.recipeAPI) else {

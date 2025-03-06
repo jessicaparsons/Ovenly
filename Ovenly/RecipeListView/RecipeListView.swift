@@ -12,7 +12,7 @@ struct RecipeListView: View {
     //MARK: - PROPERTIES
     
     @EnvironmentObject var favViewModel: FavoritesViewModel
-    @StateObject private var viewModel = RecipeListViewModel(recipeFetcher: GetRecipes())
+    @StateObject private var viewModel = RecipeListViewModel(recipeFetcher: RecipeFetcher(), cachedImageFetcher: CachedImageDataStore())
     private let gridItem: [GridItem] = Array(repeating: .init(.flexible(), spacing: Constants.gridSpacing), count: 2)
     
     //PICKER
@@ -98,7 +98,8 @@ struct RecipeListView: View {
             }
             .background(Color.background)
             .searchable(text: $searchText, prompt: "Search recipes")
-            .onChange(of: searchText) { newValue in 
+            //clears selected cuisine if the seach is empty
+            .onChange(of: searchText) { newValue in
                 if newValue.isEmpty {
                     selectedCuisine = nil
                 }
@@ -155,3 +156,48 @@ struct RecipeListView: View {
         RecipeListView().environmentObject(FavoritesViewModel())
     }
 }
+
+
+
+/*
+ 
+ I need a way to filter favorite recipes
+
+ 
+ func filterFavoriteRecipes(recipes: [RecipeModel]) -> [RecipeModel] {
+    recipes.filter { favoriteRecipes.contains($0.id) }
+ }
+ 
+ give each recipe var isFavorite
+ 
+ create a way to viewModel.recipe.isFavorite.toggle()
+ 
+ Persistence?
+ 
+ I need a way to identify the favorites
+ store the identifier in an array
+ 
+ favoriteRecipes = []
+ 
+ func toggleFavorite(recipe: RecipeModel) {
+    if !favoriteRecipes.contains(recipe.id) {
+        favoriteRecipes.append(recipe.id)
+    } else {
+    favoriteRecipes.remove(recipe.id)
+ }
+ 
+ 
+ .onTap {
+ viewModel.toggleFavorite
+ hapticfeedbackmanager.shared.mediumimpact
+ 
+ 
+ }
+ 
+ LazyVGrid {
+     forEach(selector == .isFavorite ? favoriteRecipes: recipes) {
+        //view with recipe
+ }
+ 
+ 
+ */
